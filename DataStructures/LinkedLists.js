@@ -56,6 +56,26 @@ class SinglyLinkedList {
         return this;
     }
     // insertAtTail SLL ==> O(n), n = # of nodes in list. Unless there is a tail pointer (like head)
+
+    // Search in SLL - see if value is within list:
+    search(value) {
+
+        // check if list is empty
+        if(this.isEmpty()) {
+            return null;
+        }
+
+        let currentNode = this.head;
+
+        while(currentNode !== null) {
+            if(currentNode.data === value){
+                return true;
+            }
+            currentNode = currentNode.nextElement();
+        }
+
+        return false;
+    }
 }
 
 // Doubly-Linked List (DLL) - can iterate forwards and backwards / more memory per node
@@ -86,4 +106,5 @@ let mySLL = new SinglyLinkedList;
 mySLL.insertAtHead('I was inserted at head');
 mySLL.insertAtHead('So was I');
 mySLL.insertAtTail('And I was inserted at tail');
-console.log(mySLL.getHead());
+mySLL.insertAtHead(1)
+console.log(mySLL.search(1));
