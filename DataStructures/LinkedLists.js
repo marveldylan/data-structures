@@ -62,7 +62,7 @@ class SinglyLinkedList {
 
         // check if list is empty
         if(this.isEmpty()) {
-            return null;
+            return this;
         }
 
         let currentNode = this.head;
@@ -76,6 +76,59 @@ class SinglyLinkedList {
 
         return false;
     }
+
+    // Deletions in SSL
+    deleteAtHead () {
+        // check if list is empty
+        if(this.isEmpty()) {
+            return this;
+        }
+
+        let firstElement = this.head;
+
+        // makes next element new head - essentially severs previous firstElement
+        this.head = firstElement.nextElement;
+
+        return this;
+    }
+    // Delete at Head ==> O(1)
+
+    deleteAtTail () {
+        if(this.isEmpty()) {
+            return this;
+        }
+
+        let currentNode = this.head;
+
+        while(currentNode.nextElement.nextElement != null) {
+            currentNode = currentNode.nextElement;
+        }
+
+        currentNode.nextElement = null;
+
+        return this;
+    }
+
+    // Delete at Tail (no pointer, SLL) ==> O(n)
+
+    deleteByValue (value) {
+        if(this.isEmpty()) {
+            return this;
+        }
+
+        let currentNode = this.head;
+
+        while(currentNode.nextElement != null) {
+            if(currentNode.nextElement.data === value) {
+                currentNode.nextElement = currentNode.nextElement.nextElement;
+
+            }
+            currentNode = currentNode.nextElement;
+        }
+
+        return this;
+    }
+    // Delete by Value ==> O(n)
 }
 
 // Doubly-Linked List (DLL) - can iterate forwards and backwards / more memory per node
@@ -106,5 +159,5 @@ let mySLL = new SinglyLinkedList;
 mySLL.insertAtHead('I was inserted at head');
 mySLL.insertAtHead('So was I');
 mySLL.insertAtTail('And I was inserted at tail');
-mySLL.insertAtHead(1)
-console.log(mySLL.search(1));
+mySLL.insertAtHead(1);
+console.log(mySLL.deleteAtTail());
